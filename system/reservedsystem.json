@@ -1,0 +1,15 @@
+{
+	"passphrase":"Mario1961",
+	"superuser":"admin@zzigto.net",
+	"demoModelOwner":"admin@zzigto.net",
+	"superpwd":"admin",
+	"homedir":"D:/mcApp/nodejs/mcProjects/zzigto3",
+	"log":true,
+	
+	"USE_MAIL_SERVER":true,
+	"MAIL_URL":"http://service.zzigto.net/php/sendMail.php",
+	"MAIL_HOST":"mx.enaiponline.com",
+	"MAIL_FROM":"support@zzigto.net",
+	"MAIL_FROM_NAME":"support"
+	
+}

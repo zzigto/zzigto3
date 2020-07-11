@@ -1,0 +1,14 @@
+{
+	"webport": 80, 
+	"websslport": 443, 
+	"weburl": "http://192.168.178.48",
+	"enabelJson":true,
+	"enabelHtml":true,
+	"mqttip": "192.168.178.48",	
+	"mqttipv4": "192.168.178.48",	
+	"mqttipv6": "",	
+	"mqttport": 1883,
+	"mqttsslport": 8883,	
+	"mqttwsport": 8083,
+	"mqttwssport": 8084
+}
