@@ -1,19 +1,30 @@
 {
+  "name": "zzigto3",
+  "version": "1.0.0",
+  "description": "IOT Complete solution",
+  "main": "main.js",
   "dependencies": {
     "mosca": "^2.8.3",
     "package.json": "^2.0.1",
     "query-string": "*",
     "random-int": "*"
-  },
-  "name": "zzigto3",
-  "version": "1.0.0",
-  "main": "index.js",
-  "devDependencies": {},
+  },  
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zzigto/zzigto3.git"
+  },
+  "keywords": [
+    "IOT",
+    "Complete",
+    "solution"
+  ],
+  "author": "Mario Rolle",
   "license": "ISC",
-  "description": ""
+  "bugs": {
+    "url": "https://github.com/zzigto/zzigto3/issues"
+  },
+  "homepage": "https://github.com/zzigto/zzigto3#readme"
 }
