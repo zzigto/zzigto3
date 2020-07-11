@@ -1,0 +1,174 @@
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-primary">
+                  <h4 class="card-title">Edit Profile</h4>
+                  <p class="card-category">Complete your profile</p>
+                </div>
+                <div class="card-body">
+                  <form>
+				  
+                    <div class="row">
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Email address</label>
+                          <input type="email" class="form-control" id="account.user">
+                        </div>
+                      </div>
+                      <!--div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Company</label>
+                          <input type="text" class="form-control" id="account.company">
+                        </div>
+                      </div-->
+                      <div class="col-md-4">
+                        <div class="form-group">
+                          <label class="bmd-label-floating">Hardware Developer</label>
+                          <!--input type="text" class="form-control" id="account.hm"-->
+                          <select class="browser-default custom-select" id="account.hm">
+							<option value="0">No</option>
+							<option value="1">Yes</option>
+						  </select>
+                        </div>
+                      </div>
+                    </div>
+					  
+                    <div class="row">
+						<div class="col-md-3 btn btn-primary pull-right"  id="morePersonalInfoButton" onclick="onEditAccountMorePersonalInfo()">Show Personal info</div>
+						<div class="clearfix"></div>
+                    </div>
+					
+					<div id="morePersonalInfo" style="display:none">
+						<div style="height:20px"></div>
+					  
+						<div class="row">
+						  <div class="col-md-4" style="display:none">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Time zone</label>
+							  <input type="text" class="form-control" id="account.timeZone">
+							</div>
+						  </div>
+						  
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Company</label>
+							  <input type="text" class="form-control" id="account.company">
+							</div>
+						  </div>
+						  
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Fist Name</label>
+							  <input type="text" class="form-control" id="account.firstName">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Last Name</label>
+							  <input type="text" class="form-control" id="account.lastName">
+							</div>
+						  </div>
+						</div>
+						
+						<div class="row">
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Adress</label>
+							  <input type="text" class="form-control" id="account.address">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">City</label>
+							  <input type="text" class="form-control" id="account.city">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Country</label>
+							  <input type="text" class="form-control" id="account.country">
+							</div>
+						  </div>
+						</div>
+						
+						<div class="row">
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">Postal Code</label>
+							  <input type="text" class="form-control" id="account.postalCode">
+							</div>
+						  </div>
+						</div>
+                    </div>
+					
+                    <div class="row">
+						<div class="col-md-3 btn btn-primary pull-right"  id="moreInfoButton" onclick="onEditAccountMore()">Show Optional info</div>
+						<div class="clearfix"></div>
+                    </div>
+					
+					<div id="moreInfo" style="display:none">
+						<div style="height:20px"></div>
+						<div class="row">
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT ip</label>
+							  <input type="text" class="form-control" id="account.mqttip">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT user</label>
+							  <input type="text" class="form-control" id="account.mqttuser">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT password</label>
+							  <input type="text" class="form-control" id="account.mqttpassword">
+							</div>
+						  </div>
+						</div>
+						
+						<div class="row">
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT mqttport</label>
+							  <input type="text" class="form-control" id="account.mqttport">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT mqttwsport</label>
+							  <input type="text" class="form-control" id="account.mqttwsport">
+							</div>
+						  </div>
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT mqttsslport</label>
+							  <input type="text" class="form-control" id="account.mqttsslport">
+							</div>
+						  </div>
+						</div>
+						
+						<div class="row">
+						  <div class="col-md-4">
+							<div class="form-group">
+							  <label class="bmd-label-floating">MQTT mqttwssport</label>
+							  <input type="text" class="form-control" id="account.mqttwssport">
+							</div>
+						  </div>
+						</div>
+					</div>
+
+					<hr>
+                    <div class="row">
+						<div class="col-md-3 btn btn-primary pull-right" onclick="onEditAccountSet()">Save</div>
+						<div class="col-md-3 btn btn-primary pull-right" onclick="onEditAccountRemove()">Remove Account</div>
+						<div class="clearfix"></div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>

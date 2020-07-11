@@ -1,0 +1,321 @@
+.hederDiv{
+	/* margin: 20px; */
+	padding: 5px;
+	width: calc(100% - 20px);
+}
+.led {
+	/*padding: 5px; */
+    background: #cccccc;
+    float: left;
+    border-radius: 20px;
+    border-width: 3px;
+    border-color: #444444;
+    border-style: solid;
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+}
+.userDiv{
+	/* margin: 20px; */
+	padding: 5px;
+	width: calc(100% - 20px);
+	overflow:hidden;
+}
+.inputItem {
+	/* margin: 20px; */
+	padding: 5px;
+	width: 200px;
+	height:25px;
+	background: #ffffff;
+	color: #000044;
+	border-radius: 0px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+	font-size: 20px;
+}
+.comboItem {
+	/* margin: 20px; */
+	padding: 5px;
+	width: 212px;
+	height:36px;
+	background: #ffffff;
+	color: #000044;
+	border-radius: 0px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+	font-size: 20px;
+}
+.button {
+	/* margin: 20px; */
+	padding: 5px;
+	width: 120px;
+	text-align:center;
+	background: #eeeeee;
+	color: #002244;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+	font-size: 15px;
+	font-weight:bold;
+}
+.miniButton {
+	/* margin: 20px; */
+	/*padding: 5px;*/
+	width: 30px;
+	text-align:center;
+	background: #eeeeee;
+	color: #002244;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+	float: left;
+	overflow:hidden;
+	font-size: 12px;
+}
+.miniButtonImage {
+	width: 50px;
+	text-align:center;
+	float: left;
+	overflow:hidden;
+}
+.iconImage {
+	width: 100%;
+	text-align:center;
+	float: left;
+	overflow:hidden;
+}
+.iconImageMiniButton {
+	width: 50px;
+	text-align:center;
+	float: left;
+	overflow:hidden;
+}
+.maxiButton {
+	margin: 5px;
+	width: 250px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	background: #eeeeee;
+	color: #002244;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+	font-size: 15px;
+	font-weight:bold;
+	float:left;
+}
+.label {
+	padding: 5px;
+    color: #000044;
+    font-size: 25px;
+    font-size: bold;
+    font-family: arial;
+    float: left;
+    border-width: 0px;
+    /* width: 150px; */
+}
+.label200 {
+	padding: 5px;
+    color: #000044;
+    font-size: 25px;
+    font-size: bold;
+    font-family: arial;
+    float: left;
+    border-width: 0px;
+    width: 200px;
+}
+.label1 {
+	/*padding: 5px;*/
+    color: #002244;
+    background: #ffffff;
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    float: left;
+    border-width: 0px;
+    width: 100%;
+}
+.label_detail {
+	padding: 5px;
+	font-size: 35px;
+    /*color: #eeeeee;
+    background: #888888;
+    font-size: 20px;
+    font-family: arial;
+    font-weight: bold;
+    float: left;
+    border-width: 0px;
+    width: calc(100% - 70px);*/
+}
+.columnTitle {
+	padding: 5px;
+	color: #002244;
+	background:#eeeeee;
+	font-size: 20px;
+	font-family: arial;
+}
+.columnTitleLeft {
+	padding: 5px;
+	color: #002244;
+	background:#dddddd;
+	text-align:left;
+	font-weight: bold;	
+	font-size: 10px;
+	font-family: arial;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+}
+.columnValue {
+	padding: 5px;
+	color: #002244;
+	background:#ffffff;
+	font-weight: normal;	
+	font-size: 10px;
+	font-family: arial;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	line-height: 20px;	
+	height:20px;
+}
+.link {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	font-size: 20px;
+	background:#cccccc;
+	min-width:100px;
+	height:25px;
+	line-height:25px;
+	text-decoration: underline;
+	cursor: pointer;
+}
+.linkTransparent {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	min-width:100px;
+	height:25px;
+	line-height:25px;
+	text-decoration: underline;
+}
+.data {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+}
+.continer {
+	/*padding: 5px;
+	margin:10px;*/
+	color: #000044;
+	font-family: arial;
+	border-radius: 0px;	
+	border-width: 0px;
+	border-color: #797979;
+	border-style: solid;
+}
+.continerBoard {
+	/*padding: 5px;
+	margin:10px;*/
+	color: #000044;
+	font-family: arial;
+	border-radius: 0px;	
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+}
+.titleDiv {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	font-size: 25px;
+}
+.title {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	font-size: 25px;
+}
+.iframe {
+	padding: 5px;
+	width:calc(100% - 10px);
+	border-radius: 5px;	
+	border-width: 0px;
+	border-color: #797979;
+	border-style: solid;
+}
+.map 
+{
+	background:#cccccc;
+	height: 400px;
+	width: 100%;
+}
+.widgetCombo {
+	padding: 5px;
+	color: #002244;
+	background:#ffffff;
+	line-height: 80px;
+	font-weight: bold;	
+	font-size: 65px;
+	font-family: arial;
+	border-radius: 0px;	
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	overflow: hidden;
+}
+.widgetLed{
+	padding: 5px;
+	/*background:#ffffff;*/
+	border-radius: 100px;	
+	border-width: 8px;
+	border-color: ##888888;
+	border-style: solid;
+	overflow: hidden;
+}
+.widgetValue {
+	padding: 5px;
+    text-align: center;
+    color: #002244;
+    line-height: 150px;
+    background: #ffffff;
+    font-weight: bold;
+    font-size: 65px;
+    font-family: arial;
+    border-radius: 0px;
+    border-width: 1px;
+    border-color: #797979;
+    border-style: solid;
+	overflow: hidden;
+}
+.widgetsContiner {
+	padding: 5px;
+	width:100%;
+	overflow: hidden;
+}
+.widgetContiner {
+padding: 5px;
+    margin: 5px;
+    width: 170px;
+    min-height: 420px;
+    float: left;
+    background: aliceblue;
+    overflow: hidden;
+}
+.chartDiv{
+	height:200px;
+	overflow: hidden;
+    background: #ffffff;
+}

@@ -1,0 +1,142 @@
+
+
+.inputItem {
+	/* margin: 20px; */
+	padding: 5px;
+	width: 120px;
+	background: #ffffff;
+	color: #000044;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+}
+.button {
+	/* margin: 20px; */
+	padding: 5px;
+	width: 120px;
+	text-align:center;
+	background: #002244;
+	color: #ffffff;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+}
+.miniButton {
+	/* margin: 20px; */
+	/*padding: 5px;*/
+	width: 50px;
+	text-align:center;
+	background: #002244;
+	color: #ffffff;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-weight: bold;	
+	font-size: 10px;
+	font-family: arial;
+	line-height: 20px;
+}
+.maxiButton {
+	/* margin: 20px; */
+	width: 250px;
+	height:50px;
+	line-height:50px;
+	text-align:center;
+	background: #002244;
+	color: #ffffff;
+	border-radius: 5px;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	font-family: arial;
+}
+.label {
+	padding: 5px;
+	color: #000044;
+	font-size: bold;
+	font-family: arial;
+}
+.columnTitle {
+	padding: 5px;
+	color: #002244;
+	background:#dddddd;
+	text-align:center;
+	font-weight: bold;	
+	font-size: 10px;
+	font-family: arial;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	line-height: 20px;
+	height:20px;
+}
+.columnTitleLeft {
+	padding: 5px;
+	color: #002244;
+	background:#dddddd;
+	text-align:left;
+	font-weight: bold;	
+	font-size: 10px;
+	font-family: arial;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+}
+.columnValue {
+	padding: 5px;
+	color: #002244;
+	background:#ffffff;
+	font-weight: normal;	
+	font-size: 10px;
+	font-family: arial;
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	line-height: 20px;	
+	height:20px;
+}
+.link {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	background:#cccccc;
+	min-width:100px;
+	height:25px;
+	line-height:25px;
+	text-decoration: underline;
+}
+.data {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+}
+.continer {
+	padding: 5px;
+	margin:10px;
+	color: #000044;
+	font-family: arial;
+	border-radius: 5px;	
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;
+	overflow:auto;
+}
+.title {
+	padding: 5px;
+	color: #000044;
+	font-family: arial;
+	font-size: 25px;
+}
+.iframe {
+	padding: 5px;
+	width:calc(100% - 10px);
+	border-radius: 5px;	
+	border-width: 1px;
+	border-color: #797979;
+	border-style: solid;}
+}

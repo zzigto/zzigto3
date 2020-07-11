@@ -1,0 +1,92 @@
+FROM ARDUINO
+
+{"cmd":"set_device_model", "seq":1230, "owner":"admin@zzigto.net", "model":"modello2.json"}
+{"cmd":"set_print", "seq":1230, "mode":0}
+{"cmd":"get_status", "seq":1230}
+{"cmd":"set_data", "seq":1230, "V":{"P1":100.23, "P2":125}, "GPS":{"lat":100, "lng":101, "alt":102}, "sendNow":1}
+{"cmd":"set_data", "seq":1230, "V":{"P1":333.23, "P2":444}, "GPS":{"lat":100, "lng":101, "alt":102}, "sendNow":0}
+{"cmd":"set_data", "seq":1230, "V":{"P1":200.23, "P2":300}, "GPS":{"lat":103, "lng":104, "alt":105}, "sendNow":0}
+
+{"cmd":"send_mail", "seq":1230, "sub":"Soggetto", "text":"Testo della mail"}
+{"cmd":"send_alert", "seq":1230, "sub":"Soggetto", "text":"Testo alert"}
+
+
+FROM BROWSER
+	{"T":1591637805309,"cmd":"set","P1":"34.5"}
+//-----------------------------------------------------
+
+http://service.zzigto.net/php/sendMail.php?MAIL_HOST=mx.enaiponline.com&MAIL_TO=mcrolle@gmail.com&MAIL_FROM=support@zzigto.net&MAIL_FROM_NAME=support&MAIL_SUBJECT=Hello&MAIL_TEXT=Body%20Text
+
+http://127.0.0.1/?pretty=true&func=get_system&user=mcrolle@gmail.com&pwd=eee
+
+http://127.0.0.1/mqtt/auth?username=mcrolle@gmail.com&password=eee
+
+
+http://localhost/?pretty=true&func=request_account_code&reqfunc=create_account&attributes={"user":"mcrolle@gmail.com","pwd":"pippo","mqttip":"","mqttport":0,"mqttuser":"","mqttpwd":""}
+http://localhost/?pretty=true&func=request_account_code&reqfunc=update_account&user=mcrolle@gmail.com&pwd=eee&attributes={"newpwd":"pippo","mqttip":"agfdg","mqttport":8888,"mqttuser":"qq","mqttpwd":"ww"}
+http://localhost/?pretty=true&func=request_account_code&reqfunc=delete_account&user=mcrolle@gmail.com&pwd=eee
+http://localhost/?pretty=true&func=request_account_code&reqfunc=pwd_recovery_account&user=mcrolle@gmail.com
+http://localhost/?pretty=true&func=login_user&user=mcrolle@gmail.com&pwd=eee
+http://localhost/?pretty=true&func=login_device&user=mcrolle@gmail.com&pwd=eee&si=123456789&model=modello1.json&owner=admin@zzigto.net
+
+http://127.0.0.1/?pretty=true&func=exec_confirmed_code&code=1590528318062.3478
+
+http://localhost/?pretty=true&func=get_account&user=mcrolle@gmail.com&pwd=eee
+
+http://localhost/?pretty=true&func=get_device&user=mcrolle@gmail.com&pwd=eee&si=QWERT
+
+http://localhost/?pretty=true&func=get_device&user=mcrolle@gmail.com&pwd=eee&si=QWERT
+http://localhost/?pretty=true&func=get_device_list&user=mcrolle@gmail.com&pwd=eee
+
+http://localhost/?pretty=true&func=set_device_desc&user=mcrolle@gmail.com&pwd=eee&si=QWERT&desc=description
+
+http://localhost/?pretty=true&func=set_device_alias&user=mcrolle@gmail.com&pwd=eee&si=QWERT&alias=alias
+
+
+http://localhost/?pretty=true&func=set_device&user=mcrolle@gmail.com&pwd=eee&si=QWERT&model=modello1.json&owner=admin@zzigto.net
+
+http://localhost/?pretty=true&func=send_mail&user=mcrolle@gmail.com&pwd=eee&subject=soggetto della mail&mailto=mcrolle@gmail.com&text=testo della mail
+
+http://localhost/?pretty=true&func=get_data&user=mcrolle@gmail.com&pwd=eee&si=QWERT&msfrom=1591142300000&msto=1591142500000
+
+http://localhost/?pretty=true&func=set_device_pin_desc&user=mcrolle@gmail.com&pwd=eee&si=987654&pin=P1&desc=pin desc
+http://localhost/?pretty=true&func=set_device_pin_alias&user=mcrolle@gmail.com&pwd=eee&si=987654&pin=P1&alias=pinAlias
+
+//--------------------------------------------------------------
+//PACK OUT
+1591206777546
+1591210084295
+1591174084000
+
+1591174084000
+1591202884000
+//--------------------------------------------------------------
+TOPIC:mcrolle@gmail.com/QWERT/out
+{
+	"S":true, 
+	"T":1591174084000,
+	"P1": {"V":0, "N":2, "M":4, "TN":1591174084000, "TM":1591174084000},
+	"P2": {"V":12, "N":5, "M":44, "TN":1591174084000, "TM":1591174084000},
+	"gps":{"lat":0, "lng":0, "alt":0},
+	"mem":{"total":0, "free":0},
+	"type":"data"
+}
+{
+	"S":true, 
+	"T":1591202884000,
+	"P1": {"V":0, "N":2, "M":4, "TN":1591174084000, "TM":1591174084000},
+	"P2": {"V":12, "N":5, "M":44, "TN":1591174084000, "TM":1591174084000},
+	"gps":{"lat":0, "lng":0, "alt":0},
+	"mem":{"total":0, "free":0},
+	"type":"data"
+}
+//--------------------------------------------------------------
+//PACK IN
+//--------------------------------------------------------------
+TOPIC:mcrolle@gmail.com/12345678/in
+{
+	"T":1591206777546,
+	"P3": 0,
+	"P4": 4,
+	"cmd":"reset"
+}
