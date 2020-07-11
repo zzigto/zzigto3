@@ -1,7 +1,19 @@
 {
-	"dependencies": {
-		"random-int": "*",
-		"query-string": "*",
-		"mosca": "*"
-	}
+  "dependencies": {
+    "mosca": "^2.8.3",
+    "package.json": "^2.0.1",
+    "query-string": "*",
+    "random-int": "*"
+  },
+  "name": "zzigto3",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }
