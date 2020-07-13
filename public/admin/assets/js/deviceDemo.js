@@ -115,7 +115,8 @@ class deviceDemo
 				
 				this.getLocation();
 				
-				var url=getUrl()+"/?func=login_device&user="+params.user+"&pwd="+params.pwd+"&si="+this.DEVICE_SI+"&model="+this.DEVICE_SI+".json&owner="+this.DEVICE_OWNER;
+				//var url=getUrl()+"/?func=login_device&user="+params.user+"&pwd="+params.pwd+"&si="+this.DEVICE_SI+"&model="+this.DEVICE_SI+".json&owner="+this.DEVICE_OWNER;
+				var url=getUrl()+"/?func=login_device_demo&user="+params.user+"&pwd="+params.pwd+"&si="+this.DEVICE_SI;
 				var ret=httpGet(url);
 				var jret=JSON.parse(ret);
 				if (!jret)

@@ -507,11 +507,20 @@ class zzaccount
 	{
 		try
 		{
-			if (!si || !user || !pwd || !model)
-				return {'error':true, 'error_code':-2014, 'error_msg':'Invalid parameters'};
+			//if (!si || !user || !pwd || !model)
+			//	return {'error':true, 'error_code':-2014, 'error_msg':'Invalid parameters'};
+
+			if (!si)
+				return {'error':true, 'error_code':-2014, 'error_msg':'Invalid si'};
+			if (!user)
+				return {'error':true, 'error_code':-2015, 'error_msg':'Invalid user'};
+			if (!pwd)
+				return {'error':true, 'error_code':-2016, 'error_msg':'Invalid pwd'};
+			if (!model)
+				return {'error':true, 'error_code':-2017, 'error_msg':'Invalid model'};
 			
 			if (!this.validateUser(user, pwd))
-				return {'error':true, 'error_code':-2014, 'error_msg':'Invalid user or password'};
+				return {'error':true, 'error_code':-2018, 'error_msg':'Invalid user or password'};
 			
 			var jaccount=this.get_account(user, pwd);
 

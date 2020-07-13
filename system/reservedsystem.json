@@ -2,6 +2,7 @@
 	"passphrase":"Mario1961",
 	"superuser":"admin@zzigto.net",
 	"demoModelOwner":"admin@zzigto.net",
+	"demoModelName":"DEMO-01234.json",
 	"superpwd":"admin",
 	"homedir":"D:/mcApp/nodejs/mcProjects/zzigto3",
 	"log":true,

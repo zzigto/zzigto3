@@ -393,6 +393,12 @@ class zzweb
 						result.func=queryData.func;
 						break;
 						
+					case 'login_device_demo': //from device with USER/PWD
+						result=this.zzaccount.login_device(queryData.user, queryData.pwd, queryData.si, this.jreservedsystem.demoModelName, this.jreservedsystem.demoModelOwner);
+						result.func=queryData.func;
+						break;
+					
+						
 					case 'get_system': //from browser	with USER/PWD
 						if (queryData.user && queryData.pwd)
 							result= this.zzaccount.get_system(queryData.user, queryData.pwd);
