@@ -1,0 +1,44 @@
+{
+  "version": "3.0",
+  "config": {
+    "TIMEOUT": 30000,
+    "TIMEOUT_MAX": 1800000,
+    "BOUD": 5000,
+    "desc": "",
+    "gps": false,
+    "download": true,
+    "get": true,
+    "values": {
+      "P1": {
+        "O": 0,
+        "D": 4,
+        "S": "0.01",
+        "T": "int",
+        "U": "Unit",
+        "IO": "I",
+        "SV": false,
+        "MIN": 10,
+        "MAX": 100,
+        "ALERT_MIN": 15,
+        "ALERT_MAX": 90,
+        "desc": "",
+		"gui":{"style":"combo", "values":[{"V":0, "D":"V0"}, {"V":1, "D":"V1"}, {"V":2, "D":"V2"}]}
+      },
+      "P2": {
+        "O": 0,
+        "D": 4,
+        "S": "0.01",
+        "T": "int",
+        "U": "Unit",
+        "IO": "O",
+        "SV": true,
+        "MIN": 10,
+        "MAX": 100,
+        "ALERT_MIN": 15,
+        "ALERT_MAX": 90,
+        "desc": "",
+		"gui":{"style":"gouge", "chartH":true, "chartRT":true}
+      }
+    }
+  }
+}

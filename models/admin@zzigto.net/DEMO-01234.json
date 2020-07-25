@@ -1,0 +1,127 @@
+{
+  "version": "3.0",
+  "config": {
+    "TIMEOUT": 30000,
+    "TIMEOUT_MAX": 1800000,
+    "BOUD": 5000,
+    "desc": "",
+    "gps": true,
+    "download": true,
+    "get": true,
+    "values": {
+      "P0": {
+        "O": 0,
+        "D": 2,
+        "S": "0.01",
+        "T": "float",
+        "U": "",
+        "IO": "O",
+        "SV": true,
+        "MIN": -1,
+        "MAX": 1,
+        "ALERT_MIN": -0.8,
+        "ALERT_MAX": 0.8,
+		"DEFAULT":0,
+        "desc": "",
+		"gui":{"style":"gouge"}
+      },
+      "P1": {
+        "O": 1,
+        "D": 2,
+        "S": "0.01",
+        "T": "float",
+        "U": "",
+        "IO": "O",
+        "SV": true,
+        "MIN": -1,
+        "MAX": 1,
+        "ALERT_MIN": -0.8,
+        "ALERT_MAX": 0.8,
+		"DEFAULT":0,
+        "desc": "",
+		"gui":{"style":"gouge"}
+      },
+      "P2": {
+        "O": 2,
+        "D": 2,
+        "S": "0.01",
+        "T": "float",
+        "U": "Radiants",
+        "IO": "O",
+        "SV": false,
+        "MIN": 0,
+        "MAX": 99999999,
+        "ALERT_MIN": 0,
+        "ALERT_MAX": 0,
+		"DEFAULT":0,
+        "desc": "",
+		"gui":{"style":"gouge"}
+      },
+      "P3": {
+        "O": 3,
+        "D": 2,
+        "S": "0.01",
+        "T": "float",
+        "U": "Radiants",
+        "IO": "I",
+        "SV": false,
+        "MIN": 0,
+        "MAX": 99999999,
+        "ALERT_MIN": 0,
+        "ALERT_MAX": 0,
+		"DEFAULT":0,
+        "desc": "",
+		"gui": {
+          "style": "combo",
+          "values": [
+            {
+              "V": 0,
+              "D": "0"
+            },
+            {
+              "V": 1,
+              "D": "1"
+            },
+            {
+              "V": 2,
+              "D": "2"
+            }
+          ]
+        }
+      },
+      "P4": {
+        "O": 3,
+        "D": 2,
+        "S": "0",
+        "T": "int",
+        "U": "",
+        "IO": "IO",
+        "SV": false,
+        "MIN": 0,
+        "MAX": 1,
+        "ALERT_MIN": 0,
+        "ALERT_MAX": 1,
+		"DEFAULT":0,
+        "desc": "Led",
+        "gui": {
+          "style": "led",
+          "C": "#cccccc",
+          "values": [
+            {
+              "V": 0,
+              "C": "#cccccc"
+            },
+            {
+              "V": 1,
+              "C": "#ff0000"
+            },
+            {
+              "V": 2,
+              "C": "#00ff00"
+            }
+          ]
+        }
+      }
+    }
+  }
+}
