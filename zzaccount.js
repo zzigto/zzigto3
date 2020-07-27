@@ -586,7 +586,16 @@ class zzaccount
 				jattributes.TIMEOUT=jdevices.attributes.config.TIMEOUT;
 				jattributes.TIMEOUT_MAX=jdevices.attributes.config.TIMEOUT_MAX;
 				jattributes.BOUD=jdevices.attributes.config.BOUD;
-				jattributes.remote=jdevices.attributes.config.remote;
+				
+				//this.zzweb.utils.log("jdevice.remote.1", jdevices.attributes.config.remote);
+				
+				if (!jdevices.attributes.config.remote && !jdevices.attributes.config.remote===undefined)
+					jattributes.remote=jdevices.attributes.config.remote;
+				else
+					jattributes.remote="";
+				
+				//this.zzweb.utils.log("jdevice.remote.2", jattributes.remote);
+				
 				jattributes.VALUES={};
 				
 				for( var prop in jdevices.attributes.config.values)
