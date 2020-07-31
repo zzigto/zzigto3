@@ -63,6 +63,15 @@ function initGauge(td, pinId, pin, device)
         colorNeedleEnd: 'rgba(255, 160, 122, .9)',
         valueBox: false
     };
+	if (pin.gui && pin.gui.font)
+	{
+		//if (pin.gui.font.fontFamily)
+		//	option.style.fontFamily=pin.gui.font.fontFamily;
+	
+		//if (pin.gui.font.fontSize)
+		//	option.style.fontSize=pin.gui.font.fontSize;
+	}
+	
 
     var myAnimation = {
         animationRule: 'decycle',
@@ -124,11 +133,31 @@ function initCombo(td, pinId, pin, device)
 	};
 	td.appendChild(select);
 	
+	if (pin.gui && pin.gui.font)
+	{
+		if (pin.gui.font.fontFamily)
+			select.style.fontFamily=pin.gui.font.fontFamily;
+	
+		if (pin.gui.font.fontSize)
+			select.style.fontSize=pin.gui.font.fontSize;
+	}
+	
+	
 	for (var i=0; i<device.config.values[pinId].gui.values.length; i++)
 	{
 		var option = document.createElement("option");
 		option.text = device.config.values[pinId].gui.values[i].D;
 		option.value = device.config.values[pinId].gui.values[i].V;
+		
+		if (pin.gui && pin.gui.font)
+		{
+			if (pin.gui.font.fontFamily)
+				option.style.fontFamily=pin.gui.font.fontFamily;
+		
+			if (pin.gui.font.fontSize)
+				option.style.fontSize=pin.gui.font.fontSize;
+		}
+		
 		select.add(option);	
 	}
 		
@@ -148,6 +177,15 @@ function initValue(td, pinId, pin, device)
 	div.className="widgetValue";
 	div.style.width="150px";
 	div.style.height="150px";
+	if (pin.gui && pin.gui.font)
+	{
+		if (pin.gui.font.fontFamily)
+			div.style.fontFamily=pin.gui.font.fontFamily;
+	
+		if (pin.gui.font.fontSize)
+			div.style.fontSize=pin.gui.font.fontSize;
+	}
+	
 	if (device.config.values[pinId].IO.indexOf("I")>=0)
 	{
 		div.onclick = function()
@@ -182,6 +220,14 @@ function initLed(td, pinId, pin, device)
 	div.style.width="135px";
 	div.style.height="135px";
 	td.appendChild(div);
+	if (pin.gui && pin.gui.font)
+	{
+		if (pin.gui.font.fontFamily)
+			div.style.fontFamily=pin.gui.font.fontFamily;
+	
+		if (pin.gui.font.fontSize)
+			div.style.fontSize=pin.gui.font.fontSize;
+	}
 	
 	div.style.background=device.config.values[pinId].gui.C;
 }

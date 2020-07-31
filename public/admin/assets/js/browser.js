@@ -504,31 +504,42 @@ function onBrowserDrawPinList(si, device)
 		for (pinName in device.config.values)
 		{
 			
-			if (device.config.values[pinName].gui.style=="gauge")
+			if (device.config.values[pinName].gui && device.config.values[pinName].gui.style)
 			{
-				var div=document.getElementById('pinwidget_'+si+'_'+pinName);
-				div.innerHTML="";
-				div.className="";
-				initGauge(div, pinName, device.config.values[pinName], device);
-				setGauge(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
+				if (device.config.values[pinName].gui.style=="gauge")
+				{
+					var div=document.getElementById('pinwidget_'+si+'_'+pinName);
+					div.innerHTML="";
+					div.className="";
+					initGauge(div, pinName, device.config.values[pinName], device);
+					setGauge(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
+				}
+				else if (device.config.values[pinName].gui.style=="combo")
+				{
+					var div=document.getElementById('pinwidget_'+si+'_'+pinName);
+					div.innerHTML="";
+					div.className="";
+					initCombo(div, pinName, device.config.values[pinName], device);
+					setCombo(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
+				}
+				else if (device.config.values[pinName].gui.style=="led")
+				{
+					var div=document.getElementById('pinwidget_'+si+'_'+pinName);
+					div.innerHTML="";
+					div.className="";
+					initLed(div, pinName, device.config.values[pinName], device);
+					setLed(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
+				}
+				else /*if (device.config.values[pinName].gui.style=="value")*/
+				{
+					var div=document.getElementById('pinwidget_'+si+'_'+pinName);
+					div.innerHTML="";
+					div.className="";
+					initValue(div, pinName, device.config.values[pinName], device);
+					setValue(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
+				}
 			}
-			else if (device.config.values[pinName].gui.style=="combo")
-			{
-				var div=document.getElementById('pinwidget_'+si+'_'+pinName);
-				div.innerHTML="";
-				div.className="";
-				initCombo(div, pinName, device.config.values[pinName], device);
-				setCombo(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
-			}
-			else if (device.config.values[pinName].gui.style=="led")
-			{
-				var div=document.getElementById('pinwidget_'+si+'_'+pinName);
-				div.innerHTML="";
-				div.className="";
-				initLed(div, pinName, device.config.values[pinName], device);
-				setLed(device.si, pinName, nvl(device.config.values[pinName].DEFAULT, ""));
-			}
-			else /*if (device.config.values[pinName].gui.style=="value")*/
+			else
 			{
 				var div=document.getElementById('pinwidget_'+si+'_'+pinName);
 				div.innerHTML="";
