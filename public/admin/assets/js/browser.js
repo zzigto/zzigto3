@@ -766,7 +766,45 @@ function onDownloadDataCommand()
 					return;
 				}
 				
-				download("download_"+year+"_"+month+"_"+browserData.cursi+".json", JSON.stringify(jdata, null, 2));
+				var csvData="";
+				var pins=browserData.devices.attributes.devices[browserData.cursi].config.values;
+
+				
+				for (var pin in pins) 
+				{				
+					csvData=csvData+"\r\n";
+					csvData=csvData+"'TIME';'"+pin+"'\r\n";
+					
+					for (var prop in jdata.data) 
+					{
+						//csvData=csvData+prop;
+						if (pins[pin].SV)
+						{
+							if (jdata.data[prop][pin])
+							{
+								if (jdata.data[prop][pin].TN<jdata.data[prop][pin].TM)
+								{
+									if (jdata.data[prop][pin].TN)
+										csvData=csvData+nnvl(jdata.data[prop][pin].TN,0)+";"+nnvl(jdata.data[prop][pin].N,0)+"\r\n";
+									
+									if (jdata.data[prop][pin].TM)
+										csvData=csvData+nnvl(jdata.data[prop][pin].TM,0)+";"+nnvl(jdata.data[prop][pin].M,0)+"\r\n";
+								}
+								else
+								{
+									if (jdata.data[prop][pin].TM)
+										csvData=csvData+nnvl(jdata.data[prop][pin].TM,0)+";"+nnvl(jdata.data[prop][pin].M,0)+"\r\n";
+								
+									if (jdata.data[prop][pin].TN)
+										csvData=csvData+nnvl(jdata.data[prop][pin].TN,0)+";"+nnvl(jdata.data[prop][pin].N,0)+"\r\n";
+								}							
+							}
+						}
+					}
+				}
+								
+				//download("download_"+year+"_"+month+"_"+browserData.cursi+".json", JSON.stringify(jdata, null, 2));
+				download("download_"+year+"_"+month+"_"+browserData.cursi+".json", csvData);
 			
 			}
 			catch(e)

@@ -393,6 +393,8 @@ class zzmosca
 						{
 							if (!jdata[H].hasOwnProperty(prop))
 								jdata[H][prop]={'CT':0};
+							else
+								jdata[H][prop].CT++;
 							
 							//if (jdata[H][prop])
 							//	jdata[H][prop].CT++;
