@@ -10,6 +10,7 @@ class zzmosca
     {
 		GLOBAL_MOSCA=this;
 		this.status=false;
+		this.MAX_NUM_TICK=150;
 		/*this.localconfig=localconfig;
 		if (!zzweb && localconfig)
 		{
@@ -193,6 +194,7 @@ class zzmosca
 					{
 						console.log("published.2.1");
 						GLOBAL_MOSCA.saveDataM(packet.topic, jmessage);
+						GLOBAL_MOSCA.saveDataTick(packet.topic, jmessage);
 					}
 					else
 						console.log("published.2.2");
@@ -293,7 +295,7 @@ class zzmosca
         var ret=0;
         var lenv=0;
         if (!(v === undefined))
-        {            
+        {
             ret=v;
             lenv=v.length;
         }
@@ -393,8 +395,6 @@ class zzmosca
 						{
 							if (!jdata[H].hasOwnProperty(prop))
 								jdata[H][prop]={'CT':0};
-							else
-								jdata[H][prop].CT++;
 							
 							//if (jdata[H][prop])
 							//	jdata[H][prop].CT++;
@@ -501,6 +501,60 @@ class zzmosca
 		}
 	}
 	
+	
+    saveDataTick(topic, jmessage) 
+	{
+		//console.log("saveDataTick.1");
+		
+		var items=GLOBAL_MOSCA.splitTopic(topic);
+		if (items.root && items.device)
+		{
+			var P=GLOBAL_MOSCA.zzweb.home_directory+"/devices/"+items.root+"/"+items.device+"/tick";
+			var F=P+"/tick.json";
+						
+			if (!fs.existsSync(GLOBAL_MOSCA.zzweb.home_directory+"/devices/"+items.root+"/"+items.device))
+				fs.mkdirSync(GLOBAL_MOSCA.zzweb.home_directory+"/devices/"+items.root+"/"+items.device);
+			
+			if (!fs.existsSync(GLOBAL_MOSCA.zzweb.home_directory+"/devices/"+items.root+"/"+items.device+"/tick"))
+				fs.mkdirSync(GLOBAL_MOSCA.zzweb.home_directory+"/devices/"+items.root+"/"+items.device+"/tick");
+			
+			var jtick={};
+			if (fs.existsSync(F))
+			{
+				var tick = fs.readFileSync(F, {encoding:'utf8', flag:'r'}); 
+				jtick=JSON.parse(tick);
+			}
+			
+			console.log("zzmosca.saveDataTick.jtick:", jtick);
+			//"{"T":1596550772528,"type":"data","SEQ":5,"value":{"P0":{"V":0.48,"N":0,"M":0.48,"TN":0,"TM":1596550772528},"P1":{"V":0.88,"N":0,"M":1,"TN":0,"TM":1596550748528},"P2":{"V":0.5},"P3":{"V":0.1},"P4":{"V":2}}}"				
+			for (var prop in jmessage.value) 
+			{
+				try
+				{
+					if (jmessage.value[prop].hasOwnProperty('TN') || jmessage.value[prop].hasOwnProperty('TM'))
+					{
+						console.log("zzmosca.saveDataTick.prop:", prop);
+						
+						if (!jtick.hasOwnProperty(prop))
+							jtick[prop]=[];
+												
+						console.log("zzmosca.saveDataTick.len:", prop, jtick[prop].length);
+						
+						jtick[prop][jtick[prop].length]={'T':jmessage.T, 'V':jmessage.value[prop].V};
+						if (jtick[prop].length>this.MAX_NUM_TICK)
+							jtick[prop].splice(0, jtick[prop].length-this.MAX_NUM_TICK);
+					}
+				}
+				catch(e)
+				{
+					console.log("zzmosca.saveDataTick.1.error:", e.message);
+				}						
+			}
+
+			
+			fs.writeFileSync(F, JSON.stringify(jtick, null, 2), { mode: 0o777 });
+		}
+	}
 	
 	/*init_local_config()
 	{

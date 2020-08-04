@@ -417,6 +417,14 @@ class zzweb
 						result.func=queryData.func;
 						break;										
 						
+					case 'get_tick_data': //from browser	with USER/PWD
+						if (queryData.user && queryData.pwd && queryData.si)
+							result= this.zzdevices.get_tick_data(queryData.user, queryData.pwd, queryData.si);
+						else
+							result= {'error':true, 'error_code':-1003, 'error_msg':'Invalid Login', obj:{}};
+						result.func=queryData.func;
+						break;										
+						
 					case 'send_mail': //from browser	with USER/PWD
 						if (this.onCheckMail())
 						{ 

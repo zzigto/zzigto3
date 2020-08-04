@@ -381,7 +381,12 @@ class zzdevices
 				var data = fs.readFileSync(FILE+".json", {encoding:'utf8', flag:'r'}); 
 				var jdata=JSON.parse(data);
 				
-				//this.zzweb.utils.log("passo.a.3", jtemp);
+				var F=devices.zzweb.home_directory+"/devices/"+user+"/"+deviceName+"/tick/tick.json";
+				var tick = fs.readFileSync(F, {encoding:'utf8', flag:'r'}); 
+				var jtick=JSON.parse(tick);
+				jdata.tick=jtick;
+				
+				
 				return {'error':false, 'error_code':0, 'error_msg':'', 'data':jdata};				
 			}	
 			else
@@ -392,7 +397,31 @@ class zzdevices
 			this.zzweb.utils.log(e);
 			return {'error':true, 'error_code':-3007, 'error_msg':e.name + ': ' + e.message};
 		}		
-	}
+	}	
+	
+	get_tick_data(user, pwd, deviceName)
+	{
+		try
+		{
+			if (this.zzweb.zzaccount.validateUser(user, pwd))
+			{
+				var F=devices.zzweb.home_directory+"/devices/"+user+"/"+deviceName+"/tick/tick.json";
+				var tick = fs.readFileSync(F, {encoding:'utf8', flag:'r'}); 
+				var jtick=JSON.parse(tick);
+				
+				
+				return {'error':false, 'error_code':0, 'error_msg':'', 'data':jtick};				
+			}	
+			else
+				return {'error':true, 'error_code':-3008, 'error_msg':'Invalid login'};
+		}	
+		catch(e)
+		{ 
+			this.zzweb.utils.log(e);
+			return {'error':true, 'error_code':-3007, 'error_msg':e.name + ': ' + e.message};
+		}		
+	}	
+	
 }
 
 

@@ -12,6 +12,7 @@ var browserData=
 	curpin:null, 
 	chartRT:null, 
 	chartH:null, 
+	chartT:null, 
 	map:null,
 	gps:{},
 	alert:[]
@@ -217,6 +218,8 @@ function onResize()
 		browserData.chartRT.resize();
 	if (browserData.chartH)
 		browserData.chartH.resize();
+	if (browserData.chartT)
+		browserData.chartT.resize();
 }
 
 function onBrowserLoad()
@@ -270,8 +273,9 @@ function onBrowserLoad()
 						ct++;
 					}
 					
-					browserData.chartRT=new chart(document.getElementById("chartRT"), "R");				
+					browserData.chartRT=new chart(document.getElementById("chartRT"), "R");
 					browserData.chartH=new chart(document.getElementById("chartH"), "H");
+					browserData.chartT=new chart(document.getElementById("chartT"), "T");
 					
 					document.getElementById("deviceList").innerHTML=tag;
 					onBrowserDeviceSelect(curSi);
@@ -347,6 +351,8 @@ function onBrowserDeviceSelect(si)
 		
 		onBrowserCloseChartRT();		
 		onBrowserCloseChartH();		
+		onBrowserCloseChartT();		
+		
 		onBrowserCloseMap();		
 		
 		if (browserData.devices.attributes.devices[si].config.download)
@@ -478,9 +484,10 @@ function onBrowserDrawPinList(si, device)
                 <div class="card-footer"> \
                   <div class="stats"> \
                     <i class="material-icons text-danger" id="pintimeicon_'+si+'_'+pinName+'">warning</i><div  id="pintime_'+si+'_'+pinName+'">00:00:00</div>\
-                    <i class="material-icons" onclick="onBrowserPinMail(\''+si+'\', \''+pinName+'\')">email</i>\
-                    <i class="material-icons" onclick="onBrowserChartRT(\''+si+'\', \''+pinName+'\')">timeline</i>\
-                    <i class="material-icons" onclick="onBrowserChartH(\''+si+'\', \''+pinName+'\')">leaderboard</i>\
+                    <i class="material-icons" onclick="onBrowserPinMail(\''+si+'\', \''+pinName+'\')" title="send email from pin">email</i>\
+                    <i class="material-icons" onclick="onBrowserChartRT(\''+si+'\', \''+pinName+'\')" title="Runtime Chart">timeline</i>\
+                    <i class="material-icons" onclick="onBrowserChartH(\''+si+'\', \''+pinName+'\')" title="Hourly chart">leaderboard</i>\
+                    <i class="material-icons" onclick="onBrowserChartTick(\''+si+'\', \''+pinName+'\')" title="Tick chart">leaderboard</i>\
                   </div> \
                 </div>';
 				
@@ -633,6 +640,22 @@ function onBrowserCloseChartH()
 	}
 }
 
+function onBrowserCloseChartT()
+{
+	try
+	{ 
+		//document.getElementById("chartContiner").style.display="none";
+		//document.getElementById("chartRtContiner").style.display="none";
+		document.getElementById("chartTContiner").style.display="none";
+		if (document.getElementById("chartTContiner").style.display=="none")
+			document.getElementById("chartContiner").style.display="none";
+	}    
+	catch(e)
+	{
+		alert(e);
+	}
+}
+
 function onBrowserChartRT(si, pin)
 {
 	try
@@ -658,6 +681,59 @@ function onBrowserChartRT(si, pin)
 	{
 		alert(e);
 	}
+}
+
+function onBrowserChartTick(si, pin)
+{
+	try
+	{ 
+		document.getElementById("chartContiner").style.display="block";
+		document.getElementById("chartTContiner").style.display="block";
+	
+	
+		var bd=nnvl(browserData.devices.attributes.devices[si].config.desc, si);
+		var pd=nnvl(browserData.devices.attributes.devices[si].config.values[pin].desc, pin);
+		
+		
+		browserData.curpin=pin;
+		document.getElementById("currentpin").innerHTML="Board:"+bd+" Pin:"+pd;
+		document.getElementById("chartTtitle").innerHTML="";	
+		
+
+		document.getElementById("chartTtitle").innerHTML="Tick values of pin '"+pd;	
+		
+		var data=httpGet(getUrl()+"/?func=get_tick_data&user="+browserData.user+"&pwd="+browserData.pwd+"&si="+browserData.cursi);
+		try
+		{
+			var jdata=JSON.parse(data);
+			if (jdata.error)
+			{
+				alert("Data not found");
+				return;
+			}
+			if (!jdata.data)
+			{
+				alert('Invalid Data');
+				return;
+			}
+			
+			browserData.chartT.update(jdata, browserData.curpin);
+			browserData.chartT.exec();
+			
+			goToAnchor("chartTanchor");
+																	
+		}
+		catch(e)
+		{
+			alert(e)
+		}
+		
+	}    
+	catch(e)
+	{
+		alert(e);
+	}
+
 }
 
 function onBrowserChartEditH()
@@ -800,6 +876,15 @@ function onDownloadDataCommand()
 								}							
 							}
 						}
+					}
+					
+					csvData=csvData+"\r\n";
+					csvData=csvData+"'TICKTIME';'"+pin+"'\r\n";
+					
+					if (jdata.data.tick[pin])
+					{
+						for (var i=0; i<jdata.data.tick[pin].length; i++)
+							csvData=csvData+jdata.data.tick[pin][i].T+";"+jdata.data.tick[pin][i].V+"\r\n";
 					}
 				}
 								

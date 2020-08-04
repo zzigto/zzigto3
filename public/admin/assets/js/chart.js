@@ -164,6 +164,31 @@ class chart
 					}
 				}
 			}
+			if (this.mode=="T")
+            {
+				var record={};
+				record["fill"]=false;
+				record["backgroundColor"]='#ffffff';
+				record["borderColor"]='#ffffff';
+				record["borderWidth"]=2;
+				record["pointRadius"]=2;
+				record["data"]=[];
+				
+				this.config["data"]["labels"]=[];
+				this.config["data"]["datasets"]=[];
+				
+				var id=0;
+				if (this.data && this.data.data[this.pin])
+				{
+					for (var i=0; i<this.data.data[this.pin].length; i++)
+					{
+						this.config["data"]["labels"][id]=msToStrShort(this.data.data[this.pin][i].T);
+						record["data"][id]=this.data.data[this.pin][i].V;				
+						this.config["data"]["datasets"][id]=record;				
+						id++;
+					}
+				}
+			}
             
 			
 			
