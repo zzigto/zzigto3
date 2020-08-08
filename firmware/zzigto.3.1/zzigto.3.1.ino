@@ -71,6 +71,12 @@ typedef struct zfile
   int len;
 } ZFile;
 
+typedef struct zclick
+{
+  int click_status=0;
+  long click_time=0;
+} ZClick;
+
 typedef struct zstatus
 {  
   int mode=0;
@@ -146,9 +152,6 @@ typedef struct zgps
 //GLOBAL VARIABLES
 //------------------------
 
-long lastDownClick=0;
-int asyncRequest=0;
-int clickRequest=0;
 String request="";
 String  APPWDDEFAULT="0123456789";
 
@@ -173,10 +176,33 @@ ZTimers timers;
 ZPin PIN[MAX_NUM_PIN];
 ZGps GPS;
 ZLed LEDARRAY;
+ZClick CLICK;
 unsigned int SEQ=0;
 
 void setLed()
 {
+  if (CLICK.click_status==1)
+  {
+    offLed(LEDARRAY.AP);
+    offLed(LEDARRAY.RT);
+    offLed(LEDARRAY.WIFI);
+    offLed(LEDARRAY.LOGIN);
+    offLed(LEDARRAY.HTTP);
+    offLed(LEDARRAY.MQTT);
+
+    if (millis()-CLICK.click_time>4000)
+    {
+      onLed(LEDARRAY.AP);
+      delay(2000);
+      offLed(LEDARRAY.AP);
+
+      asyncFunc1();
+    }
+        
+    return;
+  }
+  //--------------------------------
+  
   if (LEDARRAY.AP>=0)
   {
     if (status.mode==1)
@@ -283,34 +309,7 @@ void offLed(int pin)
   }
 }
 
-boolean setLedFactoryReset()
-{
-  for (int i=0; i<5; i++)
-  {
-    reverceLed(LEDARRAY.AP);
-    reverceLed(LEDARRAY.RT);
-    reverceLed(LEDARRAY.WIFI);
-    reverceLed(LEDARRAY.LOGIN);
-    reverceLed(LEDARRAY.HTTP);
-    reverceLed(LEDARRAY.MQTT);
 
-    if (clickRequest)
-    {
-      clickRequest=0;
-      onLed(LEDARRAY.AP);
-      onLed(LEDARRAY.RT);
-      onLed(LEDARRAY.WIFI);
-      onLed(LEDARRAY.LOGIN);
-      onLed(LEDARRAY.HTTP);
-      onLed(LEDARRAY.MQTT);
-      
-      return true;
-    }
-    delay(1000);
-  }
-  clickRequest=0;
-  return false;
-}
 
 void setLedReset()
 {
@@ -372,56 +371,23 @@ void asyncFunc1()
     setFile("MODE.txt", "1");
   else
     setFile("MODE.txt", "0");
-    
-  timers.restart_request_time=millis();
+
+  BOARD_restart();
+
+  //timers.restart_request_time=millis();
   status.async1=0;
 }
 
-void asyncFunc2()
-{
-  if (!setLedFactoryReset())
-    return
-  
-  setFile("SERVICEURL.txt", "");
-  setFile("APPWD.txt", APPWDDEFAULT);
-  setFile("SSID.txt", "");
-  setFile("SSIDPWD.txt", "");
-  setFile("USER.txt", "");
-  setFile("PWD.txt", "");
-  setFile("BOUD.txt", "115200");
-  
-  timers.restart_request_time=millis();    
-  status.async2=0;
-}
 
 
 
 void ICACHE_RAM_ATTR onInterruptButton() 
 {
   int val = digitalRead(BUTTON);
-    
-  if (val==1)
-  {
-    clickRequest=1;
-    long delta=millis()-lastDownClick;
-    //Serial_println("onInterruptButton "+String(val)+" delta:"+String(delta)+" milliseconds");
+  Serial_println("onInterruptButton "+String(val));
 
-    if (delta>4000)
-    {
-      asyncRequest=1;
-      status.async1=1;
-    }
-    if (delta>8000)
-    {
-      asyncRequest=2;
-      status.async2=1;
-    }
-  }
-  else
-  {
-    lastDownClick=millis();
-    //Serial_println("onInterruptButton "+String(val));
-  }
+  CLICK.click_status=1-val;
+  CLICK.click_time=millis();    
 }
 
 String ip2Str(IPAddress ip)
@@ -865,7 +831,6 @@ String getJStatus(String addString)
     out=out+"\"http\":"+String(status.http)+", ";
     out=out+"\"mqtt\":"+String(status.mqtt)+", ";
     out=out+"\"async1\":"+String(status.async1)+", ";
-    out=out+"\"async2\":"+String(status.async2)+", ";
     out=out+"\"wifiConnLoop\":"+String(status.wifiConnLoop)+", ";
     out=out+"\"mqttConnLoop\":"+String(status.mqttConnLoop)+", ";
     out=out+"\"wifiIp\":\""+status.wifiIp+"\", ";
@@ -926,7 +891,12 @@ void setup_wifi()
     if (ct > 3)
       BOARD_restart();
 
-    delay(5000);
+    long TW=millis();
+    while(millis()-TW<5000)
+    {
+      setLed();
+      delay(50);
+    }  
     ct++;
   }
 
@@ -1666,6 +1636,8 @@ void setup()
 
 void loop() 
 {
+  setLed();
+  
   //Serial_println("LOOP.1 "+MODE);
   long ms=millis();
   if (ms<timers.lastMillis)
@@ -1680,18 +1652,6 @@ void loop()
   if (WiFi.status() == WL_CONNECTED)
     status.wifi=1;
   
-  if (asyncRequest==1)
-  {
-    asyncFunc1();
-    asyncRequest=0;
-    return;
-  }
-  if (asyncRequest==2)
-  {
-    asyncFunc2();
-    asyncRequest=0;
-    return;
-  }
   
   if (timers.restart_request_time>0 && millis()-timers.restart_request_time>2000)
   {
@@ -1719,6 +1679,5 @@ void loop()
     //Serial_print_status();
   }
 
-  setLed();
   delay(50);
 }
