@@ -1,4 +1,4 @@
-/*
+  /*
 {
   "T": 1592856451606,
   "type": "data",
@@ -75,6 +75,9 @@ typedef struct zclick
 {
   int click_status=0;
   long click_time=0;
+  
+  long single_click_time=0;
+  int single_click_count=0;
 } ZClick;
 
 typedef struct zstatus
@@ -181,6 +184,34 @@ unsigned int SEQ=0;
 
 void setLed()
 {
+  if (millis()-CLICK.single_click_time>2000 && CLICK.single_click_count>0)
+  {
+    CLICK.single_click_time=0;
+    CLICK.single_click_count=0;
+    Serial_println("RESET COUNTER");
+  }
+
+  if (CLICK.single_click_count>0 && CLICK.single_click_count<5)
+  {
+    Serial_println("COUNTER:"+String(CLICK.single_click_count));
+    
+    onLed(LEDARRAY.WIFI);
+    delay(200);
+    offLed(LEDARRAY.WIFI);
+  }
+  
+  if (CLICK.single_click_count>5)
+  {
+    Serial_println("RESET TO FACTORY");
+    onLed(LEDARRAY.WIFI);
+    delay(5000);
+    offLed(LEDARRAY.WIFI);
+    resetToFactory();
+    CLICK.single_click_time=0;
+    CLICK.single_click_count=0;
+  }
+  
+  
   if (CLICK.click_status==1)
   {
     offLed(LEDARRAY.AP);
@@ -378,7 +409,18 @@ void asyncFunc1()
   status.async1=0;
 }
 
-
+void resetToFactory()
+{
+  setFile("SERVICEURL.txt", "");
+  setFile("APPWD.txt", APPWDDEFAULT);
+  setFile("SSID.txt", "");
+  setFile("SSIDPWD.txt", "");
+  setFile("USER.txt", "");
+  setFile("PWD.txt", "");
+  setFile("BOUD.txt", "115200");
+  
+  BOARD_restart();
+}
 
 
 void ICACHE_RAM_ATTR onInterruptButton() 
@@ -387,7 +429,14 @@ void ICACHE_RAM_ATTR onInterruptButton()
   Serial_println("onInterruptButton "+String(val));
 
   CLICK.click_status=1-val;
-  CLICK.click_time=millis();    
+  CLICK.click_time=millis();   
+
+  if (CLICK.click_status==1)
+  {
+    CLICK.single_click_time=millis();
+    CLICK.single_click_count++;
+  }
+   
 }
 
 String ip2Str(IPAddress ip)
