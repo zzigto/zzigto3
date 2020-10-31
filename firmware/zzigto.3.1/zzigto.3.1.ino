@@ -1546,6 +1546,8 @@ void loopRT()
 
   if (status.wifi==1 && status.login==1 && status.mqtt==1)
   {
+    //Serial_read();
+
     //Serial_println("mqttRuntime.1");
     
     int TIMEOUT_MAX=jlogin["TIMEOUT_MAX"];
