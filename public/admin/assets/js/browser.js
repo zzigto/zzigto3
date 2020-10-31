@@ -683,6 +683,80 @@ function onBrowserChartRT(si, pin)
 	}
 }
 
+function onBrowserChartRTClear()
+{
+	try
+	{ 
+		if (confirm("Do you eant to clear runtime "+browserData.cursi+" date?"))
+		{ 
+			if (browserData.dataRT[browserData.cursi]) 
+			{ 
+				browserData.dataRT[browserData.cursi]=[];
+				browserData.chartRT.reset();
+			}    
+		}    
+	}    
+	catch(e)
+	{
+		alert(e);
+	}
+}
+
+function onBrowserHistorycDataClear()
+{
+	try
+	{ 
+		if (confirm("Do you eant to clear historic "+browserData.cursi+" date?"))
+		{ 
+			var year=prompt("Enter year of date", new Date().getFullYear());
+			if (year!=null)
+			{									
+				var month=prompt("Enter month of date", new Date().getMonth()+1);
+				if (month!=null)
+				{
+					var data=httpGet(getUrl()+"/?func=delete_data&user="+browserData.user+"&pwd="+browserData.pwd+"&si="+browserData.cursi+"&year="+year+"&month="+month);
+					var jdata=JSON.parse(data);
+					if (jdata.error)
+					{
+						alert(jdata.error_msg);
+						return;
+					}
+					
+					//onBrowserCloseChartH();	
+					browserData.chartH.reset();					
+				}    
+			}    
+		}    
+	}    
+	catch(e)
+	{
+		alert(e);
+	}
+}
+
+function onBrowserHistorycTickClear()
+{
+	try
+	{ 
+		if (confirm("Do you eant to clear historic "+browserData.cursi+" tick?"))
+		{ 
+			var data=httpGet(getUrl()+"/?func=delete_tick&user="+browserData.user+"&pwd="+browserData.pwd+"&si="+browserData.cursi);
+			var jdata=JSON.parse(data);
+			if (jdata.error)
+			{
+				alert(jdata.error_msg);
+				return;
+			}
+			
+			browserData.chartT.reset();					
+		}    
+	}    
+	catch(e)
+	{
+		alert(e);
+	}
+}
+
 function onBrowserChartTick(si, pin)
 {
 	try
@@ -804,6 +878,8 @@ function onBrowserChartH(si, pin)
 		alert(e);
 	}
 }
+
+
 
 function download(filename, text) 
 {

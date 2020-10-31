@@ -422,6 +422,47 @@ class zzdevices
 		}		
 	}	
 	
+	delete_tick(user, pwd, deviceName)
+	{
+		try
+		{
+			if (this.zzweb.zzaccount.validateUser(user, pwd))
+			{
+				var F=devices.zzweb.home_directory+"/devices/"+user+"/"+deviceName+"/tick/tick.json";
+				fs.unlinkSync(F);
+				
+				return {'error':false, 'error_code':0, 'error_msg':''};				
+			}	
+			else
+				return {'error':true, 'error_code':-3008, 'error_msg':'Invalid login'};
+		}	
+		catch(e)
+		{ 
+			this.zzweb.utils.log(e);
+			return {'error':true, 'error_code':-3007, 'error_msg':e.name + ': ' + e.message};
+		}		
+	}	
+	
+	delete_data(user, pwd, deviceName, year, month)
+	{
+		try
+		{
+			if (this.zzweb.zzaccount.validateUser(user, pwd))
+			{
+				var F=devices.zzweb.home_directory+"/devices/"+user+"/"+deviceName+"/data/"+this.zzweb.utils.lPad(year, 4, "0")+this.zzweb.utils.lPad(month, 2, "0")+".json";
+				fs.unlinkSync(F); 				
+				
+				return {'error':false, 'error_code':0, 'error_msg':''};				
+			}	
+			else
+				return {'error':true, 'error_code':-3008, 'error_msg':'Invalid login'};
+		}	
+		catch(e)
+		{ 
+			this.zzweb.utils.log(e);
+			return {'error':true, 'error_code':-3007, 'error_msg':e.name + ': ' + e.message};
+		}		
+	}	
 }
 
 
